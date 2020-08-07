@@ -21,7 +21,7 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
-fetch("https://lambda-times-api.herokuapp.com/articles")
+const response = fetch("https://lambda-times-api.herokuapp.com/articles")
     .then(response => {
         console.log(response)
     })
@@ -35,6 +35,7 @@ const articleMaker = articleObj => {
 
     const headline = document.createElement("div");
     headline.classList.add("headline");
+    headline.textContent = ""
 
     const author = document.createElement("div");
     author.classList.add("author");
@@ -47,6 +48,14 @@ const articleMaker = articleObj => {
 
     const byLine = document.createElement("span");
     byLine.textContent = "";
+
+    card.appendChild(headline);
+    card.appendChild(author);
+    author.appendChild(imgContainer);
+    imgContainer.appendChild(img);
+    author.appendChild(byLine);
+
+    return card;
 }
 
     // Write a function that takes a single article object and returns the following markup:
