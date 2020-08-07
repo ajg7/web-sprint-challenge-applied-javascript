@@ -21,9 +21,19 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
-fetch("https://lambda-times-api.herokuapp.com/articles")
+import axios from "axios";
+
+axios.get("https://lambda-times-api.herokuapp.com/articles")
     .then(response => {
-        console.log(response)
+        const articles = response.data.articles;
+        Object.keys(articles).forEach(key => {
+            const topicArticles = articles[key]
+            topicArticles.forEach(article => {
+                const card = articleMaker(article)
+                const cardsContainer = document.querySelector(".cards-container");
+                elementAppend(card, cardsContainer);
+            })
+        })
     })
     .catch(error => {
         console.log(error);
@@ -34,10 +44,13 @@ fetch("https://lambda-times-api.herokuapp.com/articles")
 const articleMaker = articleObj => {
     const card = document.createElement("div");
     card.classList.add("card");
+    card.addEventListener("click", event => {
+        console.log(articleObj.headline)
+    })
 
     const headline = document.createElement("div");
     headline.classList.add("headline");
-    headline.textContent = ""
+    headline.textContent = articleObj.headline;
 
     const author = document.createElement("div");
     author.classList.add("author");
@@ -46,14 +59,12 @@ const articleMaker = articleObj => {
     imgContainer.classList.add("img-container");
 
     const img = document.createElement("img");
-    img.src = "";
+    img.src = articleObj.authorPhoto;
 
     const byLine = document.createElement("span");
-    byLine.textContent = "";
+    byLine.classList.add("by-line");
+    byLine.textContent = articleObj.authorName;
 
-    const cardsContainer = document.querySelector(".cards-container");
-    
-    cardsContainer.appendChild(card);
     card.appendChild(headline);
     card.appendChild(author);
     author.appendChild(imgContainer);
@@ -61,6 +72,11 @@ const articleMaker = articleObj => {
     author.appendChild(byLine);
 
     return card;
+}
+
+
+const elementAppend = (child, parent) => {
+    parent.appendChild(child);
 }
 
     // Write a function that takes a single article object and returns the following markup:
