@@ -28,13 +28,23 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. What is the DOM?
 
+    The Document Object Model represents the webpage itself in a tree structure format. It contains nodes, which represent each part of the document. Ex: The head is a node with children branches.
+
 2. What is an event?
+
+    An event is a call to action. When a specific action like click takes places, a callback function is invoked
 
 3. What is an event listener?
 
+    A method that executes a callback function when an event takes place
+
 4. Why would we convert a NodeList into an Array?
 
+    You cannot transform NodeLists with methods like map or forEach. They need to be an actual array.
+
 5. What is a component?
+
+    A reusable structure of code that can be used dynamically.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
