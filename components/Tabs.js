@@ -12,7 +12,6 @@
 
 import axios from "axios";
 
-
 axios.get("https://lambda-times-api.herokuapp.com/topics")
     .then(response => {
         const data = response.data.topics;
