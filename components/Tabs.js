@@ -12,16 +12,25 @@
 
 import axios from "axios";
 
-axios.get("https://lambda-times-api.herokuapp.com/topics");
+
+axios.get("https://lambda-times-api.herokuapp.com/topics")
+    .then(response => {
+        const data = response.data.topics;
+        data.forEach(topic => tabs(topic))
+    })
+    .catch(error => {
+        console.log(error);
+    })
 
 
-const tabs = tabObj => {
+
+const tabs = tabsObj => {
     const tabTopic = document.createElement("div");
     tabTopic.classList.add("tab");
-    tabTopic.textContent = tabObj.topics;
+    tabTopic.textContent = tabsObj;
 
-    const tabContainer = document.querySelector(".tabs")
-    tabContainer.appendChild(tabTopic);
+    const topics = document.querySelector(".topics")
+    topics.appendChild(tabTopic);
 
 }
 
