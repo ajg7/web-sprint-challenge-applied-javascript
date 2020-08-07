@@ -31,7 +31,7 @@ axios.get("https://lambda-times-api.herokuapp.com/articles")
             topicArticles.forEach(article => {
                 const card = articleMaker(article)
                 const cardsContainer = document.querySelector(".cards-container");
-                elementAppend(card, cardsContainer);
+                cardsContainer.appendChild(card);
             })
         })
     })
@@ -74,19 +74,3 @@ const articleMaker = articleObj => {
     return card;
 }
 
-
-const elementAppend = (child, parent) => {
-    parent.appendChild(child);
-}
-
-    // Write a function that takes a single article object and returns the following markup:
-//
-// <div class="card">
-//   <div class="headline">{Headline of article}</div>
-//   <div class="author">
-//     <div class="img-container">
-//       <img src={url of authors image} />
-//     </div>
-//     <span>By {author's name}</span>
-//   </div>
-// </div>
