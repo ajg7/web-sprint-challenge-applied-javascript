@@ -21,13 +21,15 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
-const response = fetch("https://lambda-times-api.herokuapp.com/articles")
+fetch("https://lambda-times-api.herokuapp.com/articles")
     .then(response => {
         console.log(response)
     })
     .catch(error => {
         console.log(error);
     })
+
+
 
 const articleMaker = articleObj => {
     const card = document.createElement("div");
@@ -49,6 +51,9 @@ const articleMaker = articleObj => {
     const byLine = document.createElement("span");
     byLine.textContent = "";
 
+    const cardsContainer = document.querySelector(".cards-container");
+    
+    cardsContainer.appendChild(card);
     card.appendChild(headline);
     card.appendChild(author);
     author.appendChild(imgContainer);
